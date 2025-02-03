@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -14,27 +16,59 @@ class AuthController extends Controller
     }
 
 
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'role' => 'required|in:user,admin',
-        ]);
+ 
+public function register(Request $request)
+{
+    
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required',
+        'phone_no' => 'required',
+        'password' => 'required',  
+    ]);
 
-        User::create([
+    try {
+        
+       $data = User::create([
             'name' => $request->name,
+            'phone_no' => $request->phone_no,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'role' => 'user',  
         ]);
 
-        return redirect()->route('login');
+     
+        return redirect()->route('login')->with('success', 'Registration successful! Please log in.');
+    } catch (\Exception $e) {
+        
+        return redirect()->back()->with('error', 'Registration failed. Please try again.');
     }
-
+}
     public function showLoginForm()
     {
         return view('auth.login');
     }
+    public function webpage()
+    {
+        return view('webpage.index');
+    }
+    public function admin()
+    {
+        return view('admin.userlist');
+    }
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
+
+    //     if (Auth::attempt($credentials)) {
+    //         $user = Auth::user();
+    //         return redirect()->route($user->role == 'admin' ? 'admin.dashboard' : 'user.
+    //         dashboard');
+    //     }
+
+    //     return back()->withErrors(['email' => 'Invalid credentials']);
+    // }
 }

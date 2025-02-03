@@ -7,9 +7,16 @@
     <link rel="stylesheet" href="{{asset('style.css')}}">
 </head>
 <body>
+    @if(session('success'))
+    <div style="color: green;">{{ session('success') }}</div>
+@endif
+
+@if(session('error'))
+    <div style="color: red;">{{ session('error') }}</div>
+@endif
     <h1 id="heading">LOGIN HERE</h1>
 
-    <form action="" method="POST">
+    <form action="{{route('loginpost')}}" method="POST">
         @csrf
        
        
@@ -23,7 +30,7 @@
         <button type="submit">LOG IN</button>
         <br />
         <div class=loginlink>
-        <a href="" > register here ...</a>
+        <a href="{{route("register")}}" > register here ...</a>
     </div>
     </form>
 </body>

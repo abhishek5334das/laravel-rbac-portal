@@ -8,11 +8,18 @@
 </head>
 <body>
     <h1 id="heading">REGISTER HERE</h1>
+    @if(session('success'))
+    <div style="color: green;">{{ session('success') }}</div>
+@endif
 
-    <form action="" method="POST">
+@if(session('error'))
+    <div style="color: red;">{{ session('error') }}</div>
+@endif
+
+    <form action="{{route("registerPost")}}" method="POST">
         @csrf
         <label for="name">Name</label>
-        <input type="text" class="first_name" id="name" name="name" placeholder="Enter your name" >
+        <input type="text" class="name" id="name" name="name" placeholder="Enter your name" >
         <br />
         <br />
     
@@ -22,7 +29,7 @@
         <br />
         <br />
         <label for="phone">Phone Number</label>
-        <input type="tel" class="phone_number" id="phone" name="phone_number" placeholder="Enter your phone number">
+        <input type="tel" class="phone_number" id="phone" name="phone_no" placeholder="Enter your phone number">
         <br />
         <br />
         <label for="password">password</label>
