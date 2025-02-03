@@ -51,7 +51,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{route('logout')}}" class="nav-link">
                         <button class="btn btn-primary">Logout</button>
                     </a>
                 </li>
