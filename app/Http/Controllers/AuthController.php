@@ -54,8 +54,10 @@ public function register(Request $request)
     }
     public function admin()
     {
-        return view('admin.userlist');
+        $users = User::all(); // Fetch all users from the database
+        return view('admin.userlist', compact('users')); // Pass users to the view
     }
+    
     // public function login(Request $request)
     // {
     //     $credentials = $request->validate([
@@ -71,4 +73,7 @@ public function register(Request $request)
 
     //     return back()->withErrors(['email' => 'Invalid credentials']);
     // }
+
+
 }
+

@@ -27,18 +27,20 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Category</th>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th>role</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            {{-- <tbody>
-                @foreach ($bloglists as $place)
+            <tbody>
+                @foreach ($users as $place)
                     <tr>
                         <td>{{ $place->id }}</td>
-                        <td>{{ $place->title }}</td>
-                        <td>{{ $place->category }}</td>
-                        <td>
+                        <td>{{ $place->name  }}</td>
+                        <td>{{ $place->email }}</td>
+                        <td>{{ $place->role }}</td>
+                        {{-- <td>
                             <a href="{{ route('blogshow', $place->id) }}" class="btn btn-primary">View</a>
                             <a href="{{ route('editblog', $place->id) }}" class="btn btn-success">Edit</a>
                             <form action="{{ route('deleteblog', $place->id) }}" method="POST" style="display:inline-block;" class="delete-form">
@@ -46,10 +48,10 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger delete-button">Delete</button>
                             </form>
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
-            </tbody> --}}
+            </tbody>
         </table>
     </div>
 
